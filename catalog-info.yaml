@@ -6,5 +6,8 @@ metadata:
     github.com/project-slug: codeiain/openai-DM-Mobile
 spec:
   type: other
+  system: openai-DM
   lifecycle: unknown
   owner: staff
+  consumesApis: 
+    - openai-DM-Auth-Service
