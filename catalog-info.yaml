@@ -3,11 +3,12 @@ kind: Component
 metadata:
   name: openai-DM-Mobile
   annotations:
+    backstage.io/techdocs-ref: dir:.
     github.com/project-slug: codeiain/openai-DM-Mobile
 spec:
-  type: other
+  type: website
   system: openai-dm-mobile
-  lifecycle: unknown
+  lifecycle: experimental
   owner: staff
   consumesApis: 
     - openai-dm-auth-api
