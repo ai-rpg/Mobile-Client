@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: openai-DM-Mobile
+  annotations:
+    github.com/project-slug: codeiain/openai-DM-Mobile
+spec:
+  type: other
+  lifecycle: unknown
+  owner: staff
