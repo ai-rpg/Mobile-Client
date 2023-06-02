@@ -1,3 +1,15 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: openai-dm
+  # annotations:
+  #   backstage.io/techdocs-ref: dir:.
+  #   github.com/project-slug: codeiain/openai-DM-character-service
+spec:
+  owner: me
+---
+---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -7,9 +19,9 @@ metadata:
     github.com/project-slug: codeiain/openai-DM-Mobile
 spec:
   type: website
-  system: openai-dm-mobile
+  system: openai-dm
   lifecycle: experimental
-  owner: staff
+  owner: me
   consumesApis: 
     - openai-dm-auth-api
     - openai-dm-web-socket-api
