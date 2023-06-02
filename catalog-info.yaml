@@ -7,7 +7,7 @@ metadata:
   #   backstage.io/techdocs-ref: dir:.
   #   github.com/project-slug: codeiain/openai-DM-character-service
 spec:
-  owner: me
+  owner: iain
 ---
 ---
 apiVersion: backstage.io/v1alpha1
@@ -21,7 +21,7 @@ spec:
   type: website
   system: openai-dm
   lifecycle: experimental
-  owner: me
+  owner: iain
   consumesApis: 
     - openai-dm-auth-api
     - openai-dm-web-socket-api
