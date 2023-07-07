@@ -8,23 +8,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 
-import { AuthConfig, AuthModule } from '@auth0/auth0-angular';
 import { domain, clientId, callbackUri } from './auth.config';
 import { SharedModule } from './shared';
 import { HttpClientModule } from '@angular/common/http';
 import { environment as env } from '../environments/environment';
+import { ApiModule as AdventureApiModule } from './api/adventure-service/api.module'
+import { ApiModule as AuthApiModule } from './api/auth-service/api.module';
 
-const config: AuthConfig = {
-  domain,
-  clientId,
-  authorizationParams: {
-    redirect_uri: callbackUri,
-  },
-  // For using Auth0-Angular with Ionic on Android and iOS,
-  // it's important to use refresh tokens without the falback
-  useRefreshTokens: true,
-  useRefreshTokensFallback: false,
-};
 
 // <2>
 @NgModule({
@@ -35,9 +25,9 @@ const config: AuthConfig = {
     SharedModule,
     HttpClientModule,
     SocketIoModule.forRoot(environment.socketIoConfig),
-    AuthModule.forRoot({
-      ...env.auth0,
-    })],
+    AdventureApiModule.forRoot({ rootUrl: 'https://9899-airpg-airpg-nnvibl9eqxg.ws-eu101.gitpod.io/'}),
+    AuthApiModule.forRoot({rootUrl: 'https://9898-airpg-airpg-nnvibl9eqxg.ws-eu101.gitpod.io/'})
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
