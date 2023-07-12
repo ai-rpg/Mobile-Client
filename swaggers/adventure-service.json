@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "FastAPI",
     "version": "0.1.0"
@@ -63,12 +63,12 @@
         "operationId": "get_all_adventures_for_user_adventures__user_id__get",
         "parameters": [
           {
+            "name": "user_id",
+            "in": "path",
             "required": true,
             "schema": {
               "title": "User Id"
-            },
-            "name": "user_id",
-            "in": "path"
+            }
           }
         ],
         "responses": {
@@ -97,58 +97,49 @@
   "components": {
     "schemas": {
       "AdventureModel": {
-        "title": "AdventureModel",
-        "required": [
-          "adventure_id",
-          "intro_text",
-          "history"
-        ],
-        "type": "object",
         "properties": {
           "adventure_id": {
-            "title": "Adventure Id",
-            "type": "string"
+            "type": "string",
+            "title": "Adventure Id"
           },
           "intro_text": {
-            "title": "Intro Text",
-            "type": "string"
+            "type": "string",
+            "title": "Intro Text"
           },
           "history": {
-            "title": "History",
-            "type": "string"
+            "items": {},
+            "type": "array",
+            "title": "History"
           },
           "users": {
-            "title": "Users",
+            "items": {},
             "type": "array",
-            "items": {}
+            "title": "Users"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "adventure_id",
+          "intro_text"
+        ],
+        "title": "AdventureModel"
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -158,17 +149,26 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
       }
     }
   }
