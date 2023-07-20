@@ -81,17 +81,17 @@ export class ApiService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createNewAdventureCreatePost()` instead.
    *
-   * This method sends `application/json` and handles request body of type `application/json`.
+   * This method doesn't expect any request body.
    */
   createNewAdventureCreatePost$Response(
     params: {
-      body: AdventureModel
+      user_id: string;
     },
     context?: HttpContext
   ): Observable<StrictHttpResponse<any>> {
     const rb = new RequestBuilder(this.rootUrl, ApiService.CreateNewAdventureCreatePostPath, 'post');
     if (params) {
-      rb.body(params.body, 'application/json');
+      rb.query('user_id', params.user_id, {});
     }
 
     return this.http.request(
@@ -112,11 +112,11 @@ export class ApiService extends BaseService {
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `createNewAdventureCreatePost$Response()` instead.
    *
-   * This method sends `application/json` and handles request body of type `application/json`.
+   * This method doesn't expect any request body.
    */
   createNewAdventureCreatePost(
     params: {
-      body: AdventureModel
+      user_id: string;
     },
     context?: HttpContext
   ): Observable<any> {
@@ -176,6 +176,119 @@ export class ApiService extends BaseService {
     context?: HttpContext
   ): Observable<any> {
     return this.getAllAdventuresForUserAdventuresUserIdGet$Response(params, context).pipe(
+      map((r: StrictHttpResponse<any>): any => r.body)
+    );
+  }
+
+  /** Path part for operation `getAdventureAdventureUserIdAdventureIdGet()` */
+  static readonly GetAdventureAdventureUserIdAdventureIdGetPath = '/adventure/{user_id}/{adventure_id}';
+
+  /**
+   * Get Adventure.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAdventureAdventureUserIdAdventureIdGet()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAdventureAdventureUserIdAdventureIdGet$Response(
+    params: {
+      user_id: any;
+      adventure_id: any;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<any>> {
+    const rb = new RequestBuilder(this.rootUrl, ApiService.GetAdventureAdventureUserIdAdventureIdGetPath, 'get');
+    if (params) {
+      rb.path('user_id', params.user_id, {});
+      rb.path('adventure_id', params.adventure_id, {});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'json', accept: 'application/json', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<any>;
+      })
+    );
+  }
+
+  /**
+   * Get Adventure.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAdventureAdventureUserIdAdventureIdGet$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAdventureAdventureUserIdAdventureIdGet(
+    params: {
+      user_id: any;
+      adventure_id: any;
+    },
+    context?: HttpContext
+  ): Observable<any> {
+    return this.getAdventureAdventureUserIdAdventureIdGet$Response(params, context).pipe(
+      map((r: StrictHttpResponse<any>): any => r.body)
+    );
+  }
+
+  /** Path part for operation `updateAdventureUpdatePost()` */
+  static readonly UpdateAdventureUpdatePostPath = '/update';
+
+  /**
+   * Update Adventure.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `updateAdventureUpdatePost()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateAdventureUpdatePost$Response(
+    params: {
+      body: AdventureModel
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<any>> {
+    const rb = new RequestBuilder(this.rootUrl, ApiService.UpdateAdventureUpdatePostPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'json', accept: 'application/json', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<any>;
+      })
+    );
+  }
+
+  /**
+   * Update Adventure.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `updateAdventureUpdatePost$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateAdventureUpdatePost(
+    params: {
+      body: AdventureModel
+    },
+    context?: HttpContext
+  ): Observable<any> {
+    return this.updateAdventureUpdatePost$Response(params, context).pipe(
       map((r: StrictHttpResponse<any>): any => r.body)
     );
   }

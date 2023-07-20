@@ -25,16 +25,17 @@
       "post": {
         "summary": "Create New Adventure",
         "operationId": "create_new_adventure_create_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AdventureModel"
-              }
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
             }
-          },
-          "required": true
-        },
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -92,6 +93,86 @@
           }
         }
       }
+    },
+    "/adventure/{user_id}/{adventure_id}": {
+      "get": {
+        "summary": "Get Adventure",
+        "operationId": "get_adventure_adventure__user_id___adventure_id__get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "adventure_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "Adventure Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update": {
+      "post": {
+        "summary": "Update Adventure",
+        "operationId": "update_adventure_update_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdventureModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -102,14 +183,12 @@
             "type": "string",
             "title": "Adventure Id"
           },
-          "intro_text": {
-            "type": "string",
-            "title": "Intro Text"
-          },
-          "history": {
-            "items": {},
+          "gamelog": {
+            "items": {
+              "$ref": "#/components/schemas/Conversation"
+            },
             "type": "array",
-            "title": "History"
+            "title": "Gamelog"
           },
           "users": {
             "items": {},
@@ -119,10 +198,27 @@
         },
         "type": "object",
         "required": [
-          "adventure_id",
-          "intro_text"
+          "adventure_id"
         ],
         "title": "AdventureModel"
+      },
+      "Conversation": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          }
+        },
+        "type": "object",
+        "required": [
+          "role",
+          "content"
+        ],
+        "title": "Conversation"
       },
       "HTTPValidationError": {
         "properties": {

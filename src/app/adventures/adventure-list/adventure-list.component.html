@@ -1,0 +1,7 @@
+<ul *ngIf="adventureList.length>0">
+  <li *ngFor="let adventure of adventureList">
+    <p class="w-50">name: {{adventure.adventure_id}}</p>
+  </li>
+</ul>
+<h3 *ngIf="adventureList.length==0" class="text-center">Not Found</h3>
+

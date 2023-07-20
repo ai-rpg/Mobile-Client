@@ -9,7 +9,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "update-adventure-api":"ng-openapi-gen --input swaggers/adventure-service.json --output src/app/api/adventure-service"
   },
   "private": true,
   "dependencies": {
